@@ -1,8 +1,8 @@
 class Cliente {
 
-    constructor(nombre, direccion) {
+    constructor(nombre, razonsocial) {
         this.nombre = nombre;
-        this.direccion = direccion;
+        this.razonsocial = razonsocial;
     }
 }
 
