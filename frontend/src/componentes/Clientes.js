@@ -16,7 +16,7 @@ class Clientes extends React.Component {
   }
 
   clienteChangeHandler(unCliente) {
-    var nuevaLista = this.state.clientes.map( (item) =>  (item._id != unCliente._id) ?  item : unCliente   )
+    var nuevaLista = this.state.clientes.map( (item) =>  (item._id !== unCliente._id) ?  item : unCliente   )
     this.setState({clientes: nuevaLista, seleccionado: unCliente})
   }
 

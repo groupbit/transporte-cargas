@@ -1,22 +1,20 @@
 MemoryHome = require("../src/memoryHome")
-Product = require ("../src/producto")
+Cliente = require ("../src/cliente")
 
 var home
-var chocolate
-var alfajor
+var clienteJuan
 
 
 function setup() {
     home = new MemoryHome()
-    chocolate = new Product("chocolate", 30)
-    alfajor = new Product("alfajor", 20)
-    home.insert(alfajor)
-    home.insert(chocolate)
+    clienteJuan = new Cliente("Juan","Magna.SRL")
+    home.insert(juan)
+
 }
 
 function get() {
-    expect(home.get(chocolate.id)).toBe(chocolate)
-    expect(home.get(alfajor.id)).toBe(alfajor)
+    expect(home.get(clienteJuan.id)).toBe(clienteJuan)
+
 }
 
 function getNotContained() {
@@ -24,23 +22,23 @@ function getNotContained() {
 }
 
 function deleteObject() {
-    home.delete(chocolate.id);
-    expect(home.get(chocolate.id)).toBe(undefined)
-    expect(home.get(alfajor.id)).toBe(alfajor)
+    home.delete(clienteJuan.id);
+    expect(home.get(clienteJuan.id)).toBe(undefined)
+    expect(home.get(clienteJuan.id)).toBe(clienteJuan)
     expect(home.all().length).toBe(1)
 
 }
 
 function update() {
-    chocolate.precio = 45
-    home.update(chocolate);
-    expect(home.get(chocolate.id).precio).toBe(45);
+    clienteJuan.razonsocial = "ZecMar"
+    home.update(clienteJuan);
+    expect(home.get(clienteJuan.id).razonsocial).toBe("ZecMar");
 }
 
 function all() {
     var all = home.all();
-    expect(all).toContain(chocolate);
-    expect(all).toContain(alfajor);
+    expect(all).toContain(clienteJuan);
+    expect(all).toContain(clienteJuan);
 }
 
 //register functions

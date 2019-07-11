@@ -1,7 +1,7 @@
 {
   "name": "js-get-started",
   "version": "1.0.0",
-  "description": "js tutorial",
+  "description": "js transporte-cargas",
   "main": "app.js",
   "scripts": {
     "test": "jest",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uqbar-project/js-get-started.git"
+    "url": "git+https://github.com/groupbit/transporte-cargas.git"
   },
   "keywords": [
     "js",
-    "tutorial",
+    "transporte-cargas",
     "node"
   ],
-  "author": "lgassman",
+  "author": "nataliaMarzec",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/uqbar-project/js-get-started/issues"
+    "url": "https://github.com/groupbit/transporte-cargas/issues"
   },
-  "homepage": "https://github.com/uqbar-project/js-get-started#readme",
+  "homepage": "https://github.com/groupbit/transporte-cargas#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
