@@ -12,7 +12,8 @@ mongoConnection.connect( (db) => {
    
 
     server.register(clienteHome)
-   // server.register(seferino)
+   
     server.init();
+
 })
 
