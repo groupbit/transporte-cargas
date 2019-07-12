@@ -10,7 +10,7 @@ class ClienteForm extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-      this.setState({cliente: props.producto})
+      this.setState({cliente: props.cliente})
     }
 
     changeHandler(event) {
@@ -20,7 +20,7 @@ class ClienteForm extends React.Component {
     }
 
     sendHandler(event) {
-      fetch('http://localhost:8888/productos', {
+      fetch('http://localhost:8889/productos', {
             method: 'put',
             headers: {
                 'Accept': 'application/json',

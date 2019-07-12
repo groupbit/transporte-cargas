@@ -58,8 +58,8 @@ function init() {
     res.status(204).end();  
   });
 
-  server.listen(8888, () => {
-    console.log("Server running on port 8888");
+  server.listen(8889, () => {
+    console.log("Server running on port 8889");
   });
 }
 
