@@ -1,7 +1,8 @@
 express = require("express");
 bodyParser = require("body-parser");
 cors = require("cors")
-
+var server= express();
+server=server.set('port',process.env.PORT||8889)
 var homes = {}
 
 
@@ -11,7 +12,7 @@ function register(home) {
 }
 
 function init() {
-  var server = express();
+  
   server.use(bodyParser.json())
   server.use(cors())
 
@@ -58,8 +59,8 @@ function init() {
     res.status(204).end();  
   });
 
-  server.listen(8889, () => {
-    console.log("Server running on port 8889");
+  server.listen(server.get('port'), () => {
+    console.log(`Server on port ${server.get('port')}`);
   });
 }
 

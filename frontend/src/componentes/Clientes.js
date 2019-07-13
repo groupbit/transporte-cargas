@@ -1,7 +1,7 @@
 import React from 'react';
 import ClienteRow from './ClienteRow'
 import ClienteForm from './ClienteForm'
-
+// server = require("./src/backend/server")
 class Clientes extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,8 @@ class Clientes extends React.Component {
   }
 
   componentWillMount() {
-    fetch(`http://localhost:8888/clientes`)
+    fetch(`http://localhost:8889/clientes`)
+    // fetch(`./clientes`)
       .then( res => res.json())
       .then( clts => this.setState({clientes: clts}));
   }
