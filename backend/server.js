@@ -2,7 +2,7 @@ express = require("express");
 bodyParser = require("body-parser");
 cors = require("cors")
 var server= express();
-server=server.set('port',process.env.PORT||8889)
+
 var homes = {}
 
 
@@ -12,7 +12,7 @@ function register(home) {
 }
 
 function init() {
-  
+  server=server.set('port',process.env.PORT||8889)
   server.use(bodyParser.json())
   server.use(cors())
 

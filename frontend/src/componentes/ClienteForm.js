@@ -20,8 +20,7 @@ class ClienteForm extends React.Component {
     }
 
     sendHandler(event) {
-      // fetch('http://localhost:8889/clientes', {
-        fetch('./clientes',{
+        fetch('http://localhost:8889/clientes', {
             method: 'put',
             headers: {
                 'Accept': 'application/json',
