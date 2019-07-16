@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Clientes from "./componentes/Clientes"
+import Choferes from "./componentes/Choferes"
 
 function App() {
   return (
@@ -11,17 +12,20 @@ function App() {
         <p>
           <Clientes titulo="los clientes son" />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
+         <p>
+          <Choferes titulo="los choferes son" />
+        </p>
+        {/* <a
+          className="AppCargas"
+          href="./Cargas"
           rel="noopener noreferrer"
         >
-          Learn React
-        </a>
+          Ver Cargas
+         </a> */}
       </header>
     </div>
   );
 }
 
 export default App;
+
