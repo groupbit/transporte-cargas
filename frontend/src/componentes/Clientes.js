@@ -21,7 +21,7 @@ class Clientes extends React.Component {
   }
 
   componentWillMount() {
-    fetch(`http://localhost:8888/clientes`)
+    fetch(`http://localhost:8889/clientes`)
       .then( res => res.json())
       .then( clts => this.setState({clientes: clts}));
   }
