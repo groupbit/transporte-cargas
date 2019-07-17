@@ -1,7 +1,7 @@
 import React from 'react';
 import ClienteRow from './ClienteRow'
 import ClienteForm from './ClienteForm'
-
+import { Table,Button } from 'reactstrap';
 class Clientes extends React.Component {
   constructor(props) {
     super(props);
@@ -34,18 +34,18 @@ class Clientes extends React.Component {
           <div className="clientesCSS">
               <h2>{this.props.titulo}</h2>
           
-          <table className="table">
+          <Table className="table">
             <thead>
               <tr>
-                 <th>id</th>
-                 <th>nombre</th>
-                 <th>razonsocial</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Razon social</th>
               </tr>
             </thead>
             <tbody>
               {this.renderRows()}
             </tbody>
-          </table>
+          </Table>
           <ClienteForm cliente={this.state.seleccionado} clienteChanged={this.clienteChangeHandler}/>
         </div>)
       }

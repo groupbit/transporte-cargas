@@ -1,6 +1,7 @@
 import React from 'react';
 import ChoferRow from './ChoferRow'
 import ChoferForm from './ChoferForm'
+import {Table} from 'reactstrap';
 
 class Choferes extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Choferes extends React.Component {
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
           
-          <table className="table">
+          <Table className="table">
             <thead>
               <tr>
                  <th>id</th>
@@ -45,7 +46,7 @@ class Choferes extends React.Component {
             <tbody>
               {this.renderRows()}
             </tbody>
-          </table>
+          </Table>
           <ChoferForm chofer={this.state.seleccionado} choferChanged={this.choferChangeHandler}/>
         </div>)
       }

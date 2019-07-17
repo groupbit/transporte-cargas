@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 class ChoferForm extends React.Component {
   
@@ -34,22 +35,31 @@ class ChoferForm extends React.Component {
     }
 
 
+render() {
 
-    render() {
+  return (
+    <Form onSubmit={this.sendHandler}>  
+      <FormGroup>
+      <Label for="exampleName">Nombre</Label>
+      <Input type="text" name="nombre" id="exampleNombre" value={this.state.chofer.nombre} 
+       onChange={this.changeHandler} placeholder="ej.Diego Adamkzick" />
+    </FormGroup>
+    <FormGroup>
+      <Label for="exampledni">DNI</Label>
+      <Input type="text" name="dni" id="exampleDni" value={this.state.chofer.dni}
+      onChange={this.changeHandler} placeholder="30222888" />
+    </FormGroup>
+    <Button>
+          <input type="submit" value="Actualizar"/>
+    </Button>
+    <Button>
+          <input type="submit" value="Agregar"/>
+    </Button>
+    </Form>
+)
 
-      return (
-        <form onSubmit={this.sendHandler}>
-          <label>Nombre</label> 
-          <input type="text" name='nombre' value={this.state.chofer.nombre} onChange={this.changeHandler} /><br />
-          <label>Dnil</label> 
-          <input type="text" name='dni' value={this.state.chofer.dni} onChange={this.changeHandler}/><br />
-          <br />
-          <input type="submit" value="Enviar"/> 
-        </form>
-    )
-  
-    }
+}
 
 
 }
-  export default ChoferForm
+export default ChoferForm
