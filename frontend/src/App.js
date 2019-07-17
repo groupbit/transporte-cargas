@@ -10,10 +10,10 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <Clientes titulo="los clientes son" />
+          <Clientes titulo="Clientes:" />
         </p>
          <p>
-          <Choferes titulo="los choferes son" />
+          <Choferes titulo="Choferes:" />
         </p>
         {/* <a
           className="AppCargas"
