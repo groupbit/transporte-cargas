@@ -7,8 +7,7 @@ server= server.use(morgan(`dev`));
 var path = require("path");
 var homes = {}
 console.log(__dirname + './public')
-//agregado:
-var mongodb = require (mongodb('db')).mongoConnections.js 
+
 function register(home) {
   console.log(` registering handlers for ${home.type}`)
   homes[home.type] = home 
