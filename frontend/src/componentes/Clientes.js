@@ -8,6 +8,7 @@ class Clientes extends React.Component {
     this.state= { clientes: [], seleccionado: {}}
     this.selectCliente = this.selectCliente.bind(this)
     this.clienteChangeHandler = this.clienteChangeHandler.bind(this)
+    this.addHandler = this.addHandler.bind(this)
   }
 
   selectCliente(unCliente) {
@@ -26,6 +27,23 @@ class Clientes extends React.Component {
       .then( clts => this.setState({clientes: clts}));
   }
 
+  
+  addHandler(event) {
+    fetch('http://localhost:8889/clientes', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state.cliente)
+    }).then(res => this.props.clienteChanged(this.state.cliente) )
+      .catch(res => console.log("ERRORRRRRRRRRRR") );
+
+    event.preventDefault();
+}
+
+
+
     render() {
 
       
@@ -35,18 +53,20 @@ class Clientes extends React.Component {
               <h2>{this.props.titulo}</h2>
           
           <Table className="table">
-            <thead>
-              <tr>
+          <thead>
+          <tr>
             <th>Id</th>
             <th>Nombre</th>
             <th>Razon social</th>
-              </tr>
-            </thead>
+          </tr>
+        </thead>
             <tbody>
               {this.renderRows()}
             </tbody>
           </Table>
           <ClienteForm cliente={this.state.seleccionado} clienteChanged={this.clienteChangeHandler}/>
+          <Button><input onSubmit={this.addHandler} type="submit" value="Agregar"/></Button>
+         
         </div>)
       }
 
@@ -73,3 +93,6 @@ class Clientes extends React.Component {
 
 
   export default Clientes
+
+
+ 
