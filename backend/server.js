@@ -6,7 +6,7 @@ var morgan= require("morgan");
 server= server.use(morgan(`dev`));
 var path = require("path");
 var homes = {}
-console.log(__dirname + './public')
+
 
 function register(home) {
   console.log(` registering handlers for ${home.type}`)
@@ -15,7 +15,6 @@ function register(home) {
 
 function init() {
   server.set('port',process.env.PORT||8889)
-  // server.use(bodyParser.json())
   server.use(express.json())
   server.use(cors())
  

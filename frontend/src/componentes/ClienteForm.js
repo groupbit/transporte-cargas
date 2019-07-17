@@ -40,14 +40,7 @@ class ClienteForm extends React.Component {
     render() {
 
       return (
-        <Form onSubmit={this.sendHandler}>
-          {/* <label>Nombre</label> 
-          <input type="text" name='nombre' value={this.state.cliente.nombre} onChange={this.changeHandler} /><br />
-          <label>RazonSocial</label> 
-          <input type="text" name='razonsocial' value={this.state.cliente.razonsocial} onChange={this.changeHandler}/><br />
-          <br />
-          <input type="submit" value="Enviar"/>  */}
-          
+        <Form onSubmit={this.sendHandler}>      
           <FormGroup>
           <Label for="exampleName">Nombre</Label>
           <Input type="text" name="nombre" id="exampleNombre" value={this.state.cliente.nombre} 
