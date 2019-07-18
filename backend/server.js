@@ -2,7 +2,9 @@ express = require("express");
 bodyParser = require("body-parser");
 cors = require("cors")
 var server= express();
-
+var morgan= require("morgan");
+server= server.use(morgan(`dev`));
+var path = require("path");
 var homes = {}
 
 
@@ -12,10 +14,10 @@ function register(home) {
 }
 
 function init() {
-  server=server.set('port',process.env.PORT||8889)
-  server.use(bodyParser.json())
+  server.set('port',process.env.PORT||8889)
+  server.use(express.json())
   server.use(cors())
-
+ 
   server.use("(/:type/*)|(/:type)", (req, res, next) => {
       if (!homes[req.params.type]) {
           console.log(` home de ${req.params.type} no existe`  )
@@ -26,7 +28,7 @@ function init() {
         next()
       }
   })
-
+  
   server.get("/:type", (req, res) => {
     home = homes[req.params.type]
     home.all((allObjects) => {

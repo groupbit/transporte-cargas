@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 
 class ClienteForm extends React.Component {
   
@@ -38,14 +40,24 @@ class ClienteForm extends React.Component {
     render() {
 
       return (
-        <form onSubmit={this.sendHandler}>
-          <label>Nombre</label> 
-          <input type="text" name='nombre' value={this.state.cliente.nombre} onChange={this.changeHandler} /><br />
-          <label>RazonSocial</label> 
-          <input type="text" name='razonsocial' value={this.state.cliente.razonsocial} onChange={this.changeHandler}/><br />
-          <br />
-          <input type="submit" value="Enviar"/> 
-        </form>
+        <Form onSubmit={this.sendHandler}>      
+          <FormGroup>
+          <Label for="exampleName">Nombre</Label>
+          <Input type="text" name="nombre" id="exampleNombre" value={this.state.cliente.nombre} 
+           onChange={this.changeHandler} placeholder="ej.Delfina Baldaccino" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplerazonsocial">Razon social</Label>
+          <Input type="text" name="razonsocial" id="exampleRazonsocial" value={this.state.cliente.razonsocial}
+          onChange={this.changeHandler} placeholder="GipsyCode" />
+        </FormGroup>
+        <FormText></FormText>
+        <Button>
+          <input type="submit" value="Actualizar"/>
+        </Button>
+      
+
+        </Form>
     )
   
     }
@@ -53,3 +65,7 @@ class ClienteForm extends React.Component {
 
 }
   export default ClienteForm
+
+
+
+  
