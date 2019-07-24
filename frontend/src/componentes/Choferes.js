@@ -9,10 +9,11 @@ class Choferes extends React.Component {
     this.state= { choferes: [], seleccionado: {}}
     this.selectChofer = this.selectChofer.bind(this)
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
+    this.createChofer=this.createChofer.bind(this)
+    this.updateLista=this.updateLista(this)
   }
 
   selectChofer(unChofer) {
-
     this.setState({seleccionado: unChofer})
   }
 
@@ -26,6 +27,17 @@ class Choferes extends React.Component {
       .then( res => res.json())
       .then( clts => this.setState({choferes: clts}));
   }
+
+  createChofer(){
+    this.componentWillMount()
+  }
+
+  updateLista(unChofer) {
+   var updateChofer= this.state.choferes.filter(
+  item => unChofer._id !== item._id
+   );
+   this.setState({ clientes: updateChofer });
+ }
 
     render() {
 
@@ -47,7 +59,9 @@ class Choferes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ChoferForm chofer={this.state.seleccionado} choferChanged={this.choferChangeHandler}/>
+          <ChoferForm chofer={this.state.seleccionado} choferChanged={this.choferChangeHandler}
+                       createChofer={this.createChofer} updateChofer={this.updateLista}
+          />
         </div>)
       }
 
@@ -55,7 +69,7 @@ class Choferes extends React.Component {
         return(
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
-              CARGANDOOOOOOOOOOOOOOOOOOOOO
+              CARGANDO
           </div>);  
       }
 
@@ -64,7 +78,10 @@ class Choferes extends React.Component {
     renderRows() {
       return this.state.choferes.map((unChofer, index) => {
         return (
-          <ChoferRow chofer={unChofer} selector={this.selectChofer}/>
+          <ChoferRow chofer={unChofer} selector={this.selectChofer}
+            updateLista={this.updateLista} choferChanged={this.choferChangeHandler}
+
+          />
         );
       })
     }

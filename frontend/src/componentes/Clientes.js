@@ -1,25 +1,28 @@
 import React from 'react';
 import ClienteRow from './ClienteRow'
 import ClienteForm from './ClienteForm'
-import { Table,Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 class Clientes extends React.Component {
   constructor(props) {
     super(props);
     this.state= { clientes: [], seleccionado: {}}
     this.selectCliente = this.selectCliente.bind(this)
     this.clienteChangeHandler = this.clienteChangeHandler.bind(this)
-    this.addHandler = this.addHandler.bind(this)
+    this.createCliente=this.createCliente.bind(this)
+    this.updateLista=this.updateLista(this)
+    
   }
 
   selectCliente(unCliente) {
-
     this.setState({seleccionado: unCliente})
   }
-
+  
   clienteChangeHandler(unCliente) {
     var nuevaLista = this.state.clientes.map( (item) =>  (item._id !== unCliente._id) ?  item : unCliente   )
-    this.setState({clientes: nuevaLista, seleccionado: unCliente})
+    this.setState({clientes: nuevaLista, seleccionado:{}})
+
   }
+  
 
   componentWillMount() {
     fetch(`http://localhost:8889/clientes`)
@@ -27,22 +30,16 @@ class Clientes extends React.Component {
       .then( clts => this.setState({clientes: clts}));
   }
 
-  
-  addHandler(event) {
-    fetch('http://localhost:8889/clientes', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.state.cliente)
-    }).then(res => this.props.clienteChanged(this.state.cliente) )
-      .catch(res => console.log("ERRORRRRRRRRRRR") );
+  createCliente(){
+    this.componentWillMount()
+  }
 
-    event.preventDefault();
-}
-
-
+  updateLista(unCliente) {
+   var updateCliente = this.state.clientes.filter(
+  item => unCliente._id !== item._id
+   );
+   this.setState({ clientes: updateCliente });
+ }
 
     render() {
 
@@ -64,8 +61,10 @@ class Clientes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ClienteForm cliente={this.state.seleccionado} clienteChanged={this.clienteChangeHandler}/>
-          <Button><input onSubmit={this.addHandler} type="submit" value="Agregar"/></Button>
+          <ClienteForm cliente={this.state.seleccionado} clienteChanged={this.clienteChangeHandler}
+                       createCliente={this.createCliente} updateLista={this.updateLista}
+          />
+          
          
         </div>)
       }
@@ -74,7 +73,7 @@ class Clientes extends React.Component {
         return(
           <div className="clientesCSS">
               <h2>{this.props.titulo}</h2>
-              CARGANDOOOOOOOOOOOOOOOOOOOOO
+              CARGANDO
           </div>);  
       }
 
@@ -83,7 +82,9 @@ class Clientes extends React.Component {
     renderRows() {
       return this.state.clientes.map((unCliente, index) => {
         return (
-          <ClienteRow cliente={unCliente} selector={this.selectCliente}/>
+          <ClienteRow cliente={unCliente} selector={this.selectCliente}
+            updateLista={this.updateLista} clienteChanged={this.clienteChangeHandler}
+          />
         );
       })
     }

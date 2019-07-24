@@ -7,9 +7,14 @@ class ChoferForm extends React.Component {
       super(props)
       this.state={chofer: props.chofer}
       this.changeHandler = this.changeHandler.bind(this)
-      this.sendHandler = this.sendHandler.bind(this)
+      this.estadoInicial=this.estadoInicial.bind(this)
+      this.onClick=this.onClick.bind(this)
+
     }
 
+    estadoInicial(){
+      this.setState({ cliente: { nombre: "", dni: ""} });
+    }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})
     }
@@ -29,16 +34,34 @@ class ChoferForm extends React.Component {
             },
             body: JSON.stringify(this.state.chofer)
         }).then(res => this.props.choferChanged(this.state.chofer) )
-          .catch(res => console.log("ERRORRRRRRRRRRR") );
-
+          .then(res=>this.estadoInicial)
         event.preventDefault();
     }
-
+    addHandler(event) {
+      fetch('http://localhost:8889/choferes', {
+          method: 'post',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+            body: JSON.stringify(this.state.chofer)
+          })
+          .then(res =>this.props.createChofer() )
+          .then(res => this.estadoInicial() );
+           event.preventDefault();
+  }
+  onClick(event){
+    if(this.state.chofer._id){
+     this.sendHandler(event)
+    }else {
+      this.addHandler(event)
+  }
+}
 
 render() {
 
   return (
-    <Form onSubmit={this.sendHandler}>  
+    <Form onSubmit={this.onClick}>  
       <FormGroup>
       <Label for="exampleName">Nombre</Label>
       <Input type="text" name="nombre" id="exampleNombre" value={this.state.chofer.nombre} 
@@ -49,12 +72,7 @@ render() {
       <Input type="text" name="dni" id="exampleDni" value={this.state.chofer.dni}
       onChange={this.changeHandler} placeholder="30222888" />
     </FormGroup>
-    <Button>
-          <input type="submit" value="Actualizar"/>
-    </Button>
-    <Button>
-          <input type="submit" value="Agregar"/>
-    </Button>
+    <Button type="submit" color="danger">Agregar/Actualizar</Button>  
     </Form>
 )
 
