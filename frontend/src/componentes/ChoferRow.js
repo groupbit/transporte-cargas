@@ -12,9 +12,9 @@ class ChoferRow extends React.Component {
     seleccionarChofer() {
         this.props.selector(this.props.chofer);
     }
-    // update(){
-    //   this.props.updateLista(this.props.chofer);
-    // }
+    update(){
+      // this.props.updateLista(this.props.chofer);
+    }
 
 
     deleteHandler(id) {

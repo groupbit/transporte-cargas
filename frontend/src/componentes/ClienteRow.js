@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button } from 'reactstrap'
+
 class ClienteRow extends React.Component {
   
     constructor(props) {
         super(props)
         this.seleccionarCliente = this.seleccionarCliente.bind(this)
-        this.update=this.update.bind(this)
+        this.updateCliente=this.updateCliente.bind(this)
         
 
     }
@@ -13,8 +14,8 @@ class ClienteRow extends React.Component {
         this.props.selector(this.props.cliente);
     }
 
-    update() {
-      // this.props.updateLista(this.props.cliente);
+    updateCliente() {
+      this.props.updateLista(this.props.cliente);
     }
 
     deleteHandler(id) {
@@ -25,17 +26,18 @@ class ClienteRow extends React.Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           },
-      }).then(this.update)
+      }).then(this.updateCliente)
     }
     
     render() {
 
       return (
-      <tr key={this.props.cliente._id} onClick={this.seleccionarCliente}>
+      <tr key={this.props.cliente._id} >
         <td>{this.props.cliente._id}</td> 
           <td>{this.props.cliente.nombre}</td>
           <td>{this.props.cliente.razonsocial}</td>
-          <Button type="button" onClick= {this.deleteHandler(this.props.cliente._id)} >Borrar</Button>
+          <Button onClick={this.seleccionarCliente}>Seleccionar</Button>
+          <Button onClick={this.deleteHandler(this.props.cliente._id)} >Borrar</Button>
       
 
       </tr>)

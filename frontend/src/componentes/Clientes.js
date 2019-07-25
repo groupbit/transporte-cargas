@@ -18,21 +18,19 @@ class Clientes extends React.Component {
   }
   
   clienteChangeHandler(unCliente) {
-    var nuevaLista = this.state.clientes.map( (item) =>  (item._id !== unCliente._id) ?  item : unCliente   )
-    this.setState({clientes: nuevaLista, seleccionado:{}})
+    var nuevaLista = this.state.clientes.map(item =>  (item._id !== unCliente._id) ?  item : unCliente )
+    this.setState({clientes: nuevaLista, seleccionado: {} });
 
   }
   
-
+// LISTADO
   componentWillMount() {
     fetch(`http://localhost:8889/clientes`)
       .then( res => res.json())
       .then( clts => this.setState({clientes: clts}));
   }
 
-  createCliente(){
-    this.componentWillMount()
-  }
+  
 
   updateLista(unCliente) {
    var updateCliente = this.state.clientes.filter(
@@ -61,20 +59,12 @@ class Clientes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ClienteForm cliente={this.state.seleccionado} clienteChanged={this.clienteChangeHandler}
+          <ClienteForm cliente={this.state.seleccionado} clienteChangeHandler={this.clienteChangeHandler}
                        createCliente={this.createCliente} updateLista={this.updateLista}
           />
           
          
         </div>)
-      }
-
-      else {
-        return(
-          <div className="clientesCSS">
-              <h2>{this.props.titulo}</h2>
-              CARGANDO
-          </div>);  
       }
 
     }
@@ -83,12 +73,14 @@ class Clientes extends React.Component {
       return this.state.clientes.map((unCliente, index) => {
         return (
           <ClienteRow cliente={unCliente} selector={this.selectCliente}
-            updateLista={this.updateLista} clienteChanged={this.clienteChangeHandler}
+            updateLista={this.updateLista} clienteChangeHandler={this.clienteChangeHandler}
           />
         );
       })
     }
-  
+    createCliente(){
+      this.componentWillMount()
+    }
   }
 
 
