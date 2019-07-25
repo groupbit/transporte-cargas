@@ -6,21 +6,13 @@ import {Table} from 'reactstrap';
 class Choferes extends React.Component {
   constructor(props) {
     super(props);
-    this.state= { choferes: [], seleccionado: {}}
+    this.state= { choferes: [], seleccionado:{}}
     this.selectChofer = this.selectChofer.bind(this)
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
     this.createChofer=this.createChofer.bind(this)
-    this.updateLista=this.updateLista(this)
+    this.updateLista=this.updateLista.bind(this)
   }
 
-  selectChofer(unChofer) {
-    this.setState({seleccionado: unChofer})
-  }
-
-  choferChangeHandler(unChofer) {
-    var nuevaLista = this.state.choferes.map( (item) =>  (item._id !== unChofer._id) ?  item : unChofer   )
-    this.setState({choferes: nuevaLista, seleccionado: unChofer})
-  }
 
   componentWillMount() {
     fetch(`http://localhost:8889/choferes`)
@@ -28,16 +20,7 @@ class Choferes extends React.Component {
       .then( clts => this.setState({choferes: clts}));
   }
 
-  createChofer(){
-    this.componentWillMount()
-  }
 
-  updateLista(unChofer) {
-   var updateChofer= this.state.choferes.filter(
-  item => unChofer._id !== item._id
-   );
-   this.setState({ clientes: updateChofer });
- }
 
     render() {
 
@@ -74,12 +57,32 @@ class Choferes extends React.Component {
       }
 
     }
+    createChofer(){
+      this.componentWillMount()
+    }
+  
+    updateLista(unChofer) {
+     var updateChofer= this.state.choferes.filter(
+    item => unChofer._id !== item._id
+     );
+     this.setState({ choferes: updateChofer });
+   }
+
+  selectChofer(unChofer) {
+    this.setState({seleccionado: unChofer})
+  }
+
+  choferChangeHandler(unChofer) {
+    var nuevaLista = this.state.choferes.map( (item) =>  (item._id !== unChofer._id) ?  item : unChofer   )
+    this.setState({choferes: nuevaLista, seleccionado: unChofer})
+  }
 
     renderRows() {
       return this.state.choferes.map((unChofer, index) => {
         return (
           <ChoferRow chofer={unChofer} selector={this.selectChofer}
-            updateLista={this.updateLista} choferChanged={this.choferChangeHandler}
+            updateLista={this.updateLista} 
+            //choferChanged={this.choferChangeHandler}
 
           />
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap'
+//import { Button } from 'reactstrap'
 
 class ClienteRow extends React.Component {
   
@@ -7,7 +7,7 @@ class ClienteRow extends React.Component {
         super(props)
         this.seleccionarCliente = this.seleccionarCliente.bind(this)
         this.updateCliente=this.updateCliente.bind(this)
-        
+        this.deleteHandler=this.deleteHandler.bind(this)
 
     }
     seleccionarCliente() {
@@ -15,7 +15,7 @@ class ClienteRow extends React.Component {
     }
 
     updateCliente() {
-      this.props.updateLista(this.props.cliente);
+     // this.props.updateLista(this.props.cliente);
     }
 
     deleteHandler(id) {
@@ -32,12 +32,11 @@ class ClienteRow extends React.Component {
     render() {
 
       return (
-      <tr key={this.props.cliente._id} >
+      <tr key={this.props.cliente._id} onClick = {this.seleccionarCliente} >
         <td>{this.props.cliente._id}</td> 
           <td>{this.props.cliente.nombre}</td>
           <td>{this.props.cliente.razonsocial}</td>
-          <Button onClick={this.seleccionarCliente}>Seleccionar</Button>
-          <Button onClick={this.deleteHandler(this.props.cliente._id)} >Borrar</Button>
+          <button onClick={this.deleteHandler(this.props.cliente._id)} >Borrar</button>
       
 
       </tr>)
