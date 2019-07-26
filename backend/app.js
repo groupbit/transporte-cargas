@@ -11,7 +11,6 @@ mongoConnection.connect( (db) => {
     server.register(clienteHome)
     server.register(choferHome)
   
-    server.register(clienteHome)
     server.init();
 
 })

@@ -42,8 +42,10 @@ class Choferes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ChoferForm chofer={this.state.seleccionado} choferChanged={this.choferChangeHandler}
-                       createChofer={this.createChofer} updateChofer={this.updateLista}
+          <ChoferForm chofer={this.state.seleccionado}
+           choferChangedHandler={this.choferChangeHandler}
+          createChofer={this.createChofer}
+           updateChofer={this.updateLista}
           />
         </div>)
       }
@@ -80,9 +82,10 @@ class Choferes extends React.Component {
     renderRows() {
       return this.state.choferes.map((unChofer, index) => {
         return (
-          <ChoferRow chofer={unChofer} selector={this.selectChofer}
+          <ChoferRow chofer={unChofer}
+            selector={this.selectChofer}
             updateLista={this.updateLista} 
-            //choferChanged={this.choferChangeHandler}
+            choferChangedHandler={this.choferChangeHandler}
 
           />
         );

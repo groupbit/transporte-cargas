@@ -12,13 +12,13 @@ class ChoferRow extends React.Component {
     seleccionarChofer() {
         this.props.selector(this.props.chofer);
     }
+
     updateChofer(){
       this.props.updateLista(this.props.chofer);
     }
 
-
-    deleteHandler(id) {
-      fetch("http://localhost:8889/clientes/" +id, {
+    deleteHandler(_id) {
+      fetch("http://localhost:8889/clientes/" +_id, {
           method: 'DELETE',
           headers: {
               'Accept': 'application/json',
