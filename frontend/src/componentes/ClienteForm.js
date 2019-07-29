@@ -3,13 +3,18 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 class ClienteForm extends React.Component {
-  
     constructor(props) {
       super(props)
-      this.state={cliente: props.cliente}
+      this.state={cliente: props.cliente} 
+      this.estadoInicial=this.estadoInicial.bind(this)
       this.changeHandler = this.changeHandler.bind(this)
-      this.sendHandler = this.sendHandler.bind(this)
+      this.onClick=this.onClick.bind(this)
     }
+
+    estadoInicial(){
+      this.setState({ cliente: { nombre: "", razonsocial: ""} });
+    }
+  
 
     componentWillReceiveProps(props) {
       this.setState({cliente: props.cliente})
@@ -18,8 +23,9 @@ class ClienteForm extends React.Component {
     changeHandler(event) {
         var nuevoCliente = Object.assign({}, this.state.cliente)
         nuevoCliente[event.target.name] = event.target.value
-        this.setState({cliente: nuevoCliente})
-    }
+        this.setState({cliente: nuevoCliente})}
+       
+        
 
     sendHandler(event) {
         fetch('http://localhost:8889/clientes', {
@@ -30,17 +36,37 @@ class ClienteForm extends React.Component {
             },
             body: JSON.stringify(this.state.cliente)
         }).then(res => this.props.clienteChanged(this.state.cliente) )
-          .catch(res => console.log("ERRORRRRRRRRRRR") );
+          .then(res => this.estadoInicial())
 
         event.preventDefault();
     }
+    addHandler(event) {
+      fetch('http://localhost:8889/clientes', {
+          method: 'post',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+            body: JSON.stringify(this.state.cliente)
+          })
+          .then(res =>this.props.createCliente() )
+           .then(res => this.estadoInicial() );
 
+      event.preventDefault();
+  }
 
+  onClick(event){
+    if(this.state.cliente._id){
+     this.sendHandler(event)
+    }else {
+      this.addHandler(event)
+  }
+}
 
     render() {
 
       return (
-        <Form onSubmit={this.sendHandler}>      
+        <Form onSubmit={this.onClick}>  
           <FormGroup>
           <Label for="exampleName">Nombre</Label>
           <Input type="text" name="nombre" id="exampleNombre" value={this.state.cliente.nombre} 
@@ -52,11 +78,9 @@ class ClienteForm extends React.Component {
           onChange={this.changeHandler} placeholder="GipsyCode" />
         </FormGroup>
         <FormText></FormText>
-        <Button>
-          <input type="submit" value="Actualizar"/>
-        </Button>
-      
+        <Button type="submit" color="danger">Agregar/Actualizar</Button>
 
+        
         </Form>
     )
   

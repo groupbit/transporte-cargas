@@ -6,26 +6,21 @@ import {Table} from 'reactstrap';
 class Choferes extends React.Component {
   constructor(props) {
     super(props);
-    this.state= { choferes: [], seleccionado: {}}
+    this.state= { choferes: [], seleccionado:{}}
     this.selectChofer = this.selectChofer.bind(this)
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
+    this.createChofer=this.createChofer.bind(this)
+    this.updateLista=this.updateLista.bind(this)
   }
 
-  selectChofer(unChofer) {
-
-    this.setState({seleccionado: unChofer})
-  }
-
-  choferChangeHandler(unChofer) {
-    var nuevaLista = this.state.choferes.map( (item) =>  (item._id !== unChofer._id) ?  item : unChofer   )
-    this.setState({choferes: nuevaLista, seleccionado: unChofer})
-  }
 
   componentWillMount() {
     fetch(`http://localhost:8889/choferes`)
       .then( res => res.json())
       .then( clts => this.setState({choferes: clts}));
   }
+
+
 
     render() {
 
@@ -47,7 +42,11 @@ class Choferes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ChoferForm chofer={this.state.seleccionado} choferChanged={this.choferChangeHandler}/>
+          <ChoferForm chofer={this.state.seleccionado}
+           choferChangedHandler={this.choferChangeHandler}
+          createChofer={this.createChofer}
+           updateChofer={this.updateLista}
+          />
         </div>)
       }
 
@@ -55,16 +54,40 @@ class Choferes extends React.Component {
         return(
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
-              CARGANDOOOOOOOOOOOOOOOOOOOOO
+              CARGANDO
           </div>);  
       }
 
     }
+    createChofer(){
+      this.componentWillMount()
+    }
+  
+    updateLista(unChofer) {
+     var updateChofer= this.state.choferes.filter(
+    item => unChofer._id !== item._id
+     );
+     this.setState({ choferes: updateChofer });
+   }
+
+  selectChofer(unChofer) {
+    this.setState({seleccionado: unChofer})
+  }
+
+  choferChangeHandler(unChofer) {
+    var nuevaLista = this.state.choferes.map( (item) =>  (item._id !== unChofer._id) ?  item : unChofer   )
+    this.setState({choferes: nuevaLista, seleccionado: unChofer})
+  }
 
     renderRows() {
       return this.state.choferes.map((unChofer, index) => {
         return (
-          <ChoferRow chofer={unChofer} selector={this.selectChofer}/>
+          <ChoferRow chofer={unChofer}
+            selector={this.selectChofer}
+            updateLista={this.updateLista} 
+            choferChangedHandler={this.choferChangeHandler}
+
+          />
         );
       })
     }
