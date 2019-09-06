@@ -38,7 +38,7 @@ class Choferes extends React.Component {
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
           
-          <Table className="table">
+          <Table className="table" hover>
             <thead>
               <tr>
                  <th>id</th>

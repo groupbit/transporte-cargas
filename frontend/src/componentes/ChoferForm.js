@@ -72,7 +72,7 @@ render() {
       <Input type="text" name="dni" id="exampleDni" value={this.state.chofer.dni}
       onChange={this.changeHandler} placeholder="30222888" />
     </FormGroup>
-    <Button type="submit" color="danger">Agregar/Actualizar</Button>  
+    <Button type="submit" outline color="success">Agregar/Actualizar</Button>  
     </Form>
 )
 
