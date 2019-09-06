@@ -38,7 +38,7 @@ class Choferes extends React.Component {
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
           
-          <Table className="table">
+          <Table className="table" hover>
             <thead>
               <tr>
                  <th>id</th>
@@ -69,11 +69,11 @@ class Choferes extends React.Component {
     }
   
     updateLista(unChofer) {
-    //  var updateChofer= this.state.choferes.filter(
-    // item => unChofer._id !== item._id
-    //  );
-    //  this.setState({ choferes: updateChofer });
-   this.componentWillMount()
+     var updateChofer= this.state.choferes.filter(
+    item => unChofer._id !== item._id
+     );
+     this.setState({ choferes: updateChofer });
+
   }
 
   selectChofer(unChofer) {

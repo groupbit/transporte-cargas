@@ -77,7 +77,7 @@ class ClienteForm extends React.Component {
           onChange={this.changeHandler} placeholder="GipsyCode" />
         </FormGroup>
         <FormText></FormText>
-        <Button type="submit" color="danger">Agregar/Actualizar</Button>
+        <Button type="submit" outline color="success">Agregar/Actualizar</Button>
 
         
         </Form>

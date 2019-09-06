@@ -36,9 +36,9 @@ class ChoferRow extends React.Component {
         <td>{this.props.chofer._id}</td> 
           <td>{this.props.chofer.nombre}</td>
           <td>{this.props.chofer.dni}</td>
-          <Button onClick= {this.seleccionarChofer}> seleccionar</Button>
-          <Button onClick={()=> this.deleteHandler(this.props.chofer._id)} onSubmit={()=>this.onDelete}>Borrar</Button>
-
+          <Button onClick= {this.seleccionarChofer} outline color="primary"> seleccionar</Button>
+          <Button onClick={()=> this.deleteHandler(this.props.chofer._id)} outline color="danger">Borrar</Button>
+     
       </tr>)
   
     }
