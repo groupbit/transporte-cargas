@@ -69,11 +69,11 @@ class Choferes extends React.Component {
     }
   
     updateLista(unChofer) {
-    //  var updateChofer= this.state.choferes.filter(
-    // item => unChofer._id !== item._id
-    //  );
-    //  this.setState({ choferes: updateChofer });
-   this.componentWillMount()
+     var updateChofer= this.state.choferes.filter(
+    item => unChofer._id !== item._id
+     );
+     this.setState({ choferes: updateChofer });
+
   }
 
   selectChofer(unChofer) {
