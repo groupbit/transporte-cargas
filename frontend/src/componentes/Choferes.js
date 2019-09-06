@@ -9,7 +9,7 @@ class Choferes extends React.Component {
     this.state= { choferes: [], seleccionado:{}}
     this.selectChofer = this.selectChofer.bind(this)
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
-    this.createChofer=this.createChofer.bind(this)
+    this.listadoChoferes=this.listadoChoferes.bind(this)
     this.updateLista=this.updateLista.bind(this)
   }
 
@@ -27,6 +27,14 @@ class Choferes extends React.Component {
       
       if( this.state.choferes.length > 0 ) {
         return(
+
+          <div className="container">
+          <ChoferForm chofer={this.state.seleccionado}
+           choferChanged={this.choferChangeHandler}
+           listadoChoferes={this.listadoChoferes}
+           updateLista={this.updateLista}
+          />
+         
           <div className="choferesCSS">
               <h2>{this.props.titulo}</h2>
           
@@ -42,11 +50,8 @@ class Choferes extends React.Component {
               {this.renderRows()}
             </tbody>
           </Table>
-          <ChoferForm chofer={this.state.seleccionado}
-           choferChangedHandler={this.choferChangeHandler}
-          createChofer={this.createChofer}
-           updateChofer={this.updateLista}
-          />
+     
+          </div>
         </div>)
       }
 
@@ -59,16 +64,17 @@ class Choferes extends React.Component {
       }
 
     }
-    createChofer(){
+    listadoChoferes(){
       this.componentWillMount()
     }
   
     updateLista(unChofer) {
-     var updateChofer= this.state.choferes.filter(
-    item => unChofer._id !== item._id
-     );
-     this.setState({ choferes: updateChofer });
-   }
+    //  var updateChofer= this.state.choferes.filter(
+    // item => unChofer._id !== item._id
+    //  );
+    //  this.setState({ choferes: updateChofer });
+   this.componentWillMount()
+  }
 
   selectChofer(unChofer) {
     this.setState({seleccionado: unChofer})

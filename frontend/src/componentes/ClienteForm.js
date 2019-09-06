@@ -6,13 +6,13 @@ class ClienteForm extends React.Component {
     constructor(props) {
       super(props)
       this.state={cliente: props.cliente} 
-      this.estadoInicial=this.estadoInicial.bind(this)
       this.changeHandler = this.changeHandler.bind(this)
+      this.estadoInicial=this.estadoInicial.bind(this)
       this.onClick=this.onClick.bind(this)
     }
 
     estadoInicial(){
-      this.setState({ cliente: { nombre: "", razonsocial: ""} });
+      this.setState({ cliente: {id:"", nombre: "", razonsocial: ""} });
     }
   
 
@@ -29,13 +29,13 @@ class ClienteForm extends React.Component {
 
     sendHandler(event) {
         fetch('http://localhost:8889/clientes', {
-            method: 'put',
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this.state.cliente)
-        }).then(res => this.props.clienteChanged(this.state.cliente) )
+            
+        }).then(res => this.props.clienteChange(this.state.cliente) )
           .then(res => this.estadoInicial())
 
         event.preventDefault();
@@ -49,19 +49,18 @@ class ClienteForm extends React.Component {
           },
             body: JSON.stringify(this.state.cliente)
           })
-          .then(res =>this.props.createCliente() )
-           .then(res => this.estadoInicial() );
-
-      event.preventDefault();
+          .then(res =>this.props.listadoClientes() )
+          .then(res => this.estadoInicial() );
+          event.preventDefault();
   }
 
-  onClick(event){
-    if(this.state.cliente._id){
-     this.sendHandler(event)
-    }else {
-      this.addHandler(event)
+     onClick(event){
+      if(this.state.cliente._id){
+       this.sendHandler(event)
+      }else {
+       this.addHandler(event)
+    }
   }
-}
 
     render() {
 
@@ -89,7 +88,3 @@ class ClienteForm extends React.Component {
 
 }
   export default ClienteForm
-
-
-
-  

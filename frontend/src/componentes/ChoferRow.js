@@ -6,25 +6,25 @@ class ChoferRow extends React.Component {
         super(props);
         this.seleccionarChofer = this.seleccionarChofer.bind(this);
         this.deleteHandler=this.deleteHandler.bind(this);
-        this.updateChofer=this.updateChofer.bind(this);
+        this.onDelete=this.onDelete.bind(this)
     }
 
     seleccionarChofer() {
         this.props.selector(this.props.chofer);
     }
 
-    updateChofer(){
+    onDelete(){
       this.props.updateLista(this.props.chofer);
     }
 
     deleteHandler(_id) {
-      fetch("http://localhost:8889/clientes/" +_id, {
+      fetch("http://localhost:8889/choferes/" +_id, {
           method: 'DELETE',
           headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           },
-      }).then(this.updateChofer)
+      }).then(this.onDelete)
         
     }
     
@@ -32,11 +32,12 @@ class ChoferRow extends React.Component {
     render() {
 
       return (
-      <tr key={this.props.chofer._id} onClick={this.seleccionarChofer} >
+      <tr>
         <td>{this.props.chofer._id}</td> 
           <td>{this.props.chofer.nombre}</td>
           <td>{this.props.chofer.dni}</td>
-      <Button onClick= { () => {this.deleteHandler(this.props.chofer._id);}} >Borrar</Button>
+          <Button onClick= {this.seleccionarChofer}> seleccionar</Button>
+          <Button onClick={()=> this.deleteHandler(this.props.chofer._id)} onSubmit={()=>this.onDelete}>Borrar</Button>
 
       </tr>)
   

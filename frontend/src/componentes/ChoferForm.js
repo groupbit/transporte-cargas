@@ -13,7 +13,7 @@ class ChoferForm extends React.Component {
     }
 
     estadoInicial(){
-      this.setState({ cliente: { nombre: "", dni: ""} });
+      this.setState({ chofer: { nombre: "", dni: ""} });
     }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})
@@ -32,7 +32,7 @@ class ChoferForm extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this.state.chofer)
+            
         }).then(res => this.props.choferChanged(this.state.chofer) )
           .then(res=>this.estadoInicial)
         event.preventDefault();
@@ -46,7 +46,7 @@ class ChoferForm extends React.Component {
           },
             body: JSON.stringify(this.state.chofer)
           })
-          .then(res =>this.props.createChofer() )
+          .then(res =>this.props.listadoChoferes() )
           .then(res => this.estadoInicial() );
            event.preventDefault();
   }
