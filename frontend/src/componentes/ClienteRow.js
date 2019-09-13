@@ -26,8 +26,6 @@ class ClienteRow extends React.Component {
               'Content-Type': 'application/json'
           },
         }).then(this.onDelete)
-          .then(console.log("OKKKKKKKKKKKKK"))
-          .catch(console.error("Arreglarrrrrrrrrrrrrr"))
     }
     
     render() {
@@ -37,6 +35,8 @@ class ClienteRow extends React.Component {
         <td>{this.props.cliente._id}</td> 
           <td>{this.props.cliente.nombre}</td>
           <td>{this.props.cliente.razonsocial}</td>
+          <td>{this.props.cliente.email}</td>
+          
         <Button onClick= {this.seleccionarCliente} outline color="primary"> seleccionar</Button>
         <Button onClick={()=> this.deleteHandler(this.props.cliente._id)} outline color="danger">Borrar</Button>
 

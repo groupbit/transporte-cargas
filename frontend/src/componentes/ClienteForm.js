@@ -12,9 +12,10 @@ class ClienteForm extends React.Component {
     }
 
     estadoInicial(){
-      this.setState({ cliente: {id:"", nombre: "", razonsocial: ""} });
+      this.setState({ cliente: {id:"", nombre: "", razonsocial: "",email:"" ,
+      password:"desarrollo"} });
     }
-  
+
 
     componentWillReceiveProps(props) {
       this.setState({cliente: props.cliente})
@@ -69,14 +70,21 @@ class ClienteForm extends React.Component {
           <FormGroup>
           <Label for="exampleName">Nombre</Label>
           <Input type="text" name="nombre" id="exampleNombre" value={this.state.cliente.nombre} 
-           onChange={this.changeHandler} placeholder="ej.Delfina Baldaccino" />
+           onChange={this.changeHandler} placeholder="Delfina Baldaccino" />
         </FormGroup>
         <FormGroup>
           <Label for="examplerazonsocial">Razon social</Label>
           <Input type="text" name="razonsocial" id="exampleRazonsocial" value={this.state.cliente.razonsocial}
           onChange={this.changeHandler} placeholder="GipsyCode" />
         </FormGroup>
-        <FormText></FormText>
+        <FormGroup>
+          <Label for="exampleEmail">Email</Label>
+          <Input type="email" name="email" id="exampleEmail" value={this.state.cliente.email}
+          onChange={this.changeHandler} placeholder="natimarzec708@gmail.com" />
+        </FormGroup>
+       
+
+        <FormText color="muted">AL PRESIONAR EL BOTON SIGUIENTE AGREGAS O ACTUALIZAS</FormText>
         <Button type="submit" outline color="success">Agregar/Actualizar</Button>
 
         
