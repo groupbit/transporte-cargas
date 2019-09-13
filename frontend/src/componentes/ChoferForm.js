@@ -8,12 +8,12 @@ class ChoferForm extends React.Component {
       this.state={chofer: props.chofer}
       this.changeHandler = this.changeHandler.bind(this)
       this.estadoInicial=this.estadoInicial.bind(this)
-      this.onClick=this.onClick.bind(this)
-
-    }
+      this.onSubmit=this.onSubmit.bind(this)
+       
+}
 
     estadoInicial(){
-      this.setState({ chofer: { nombre: "", dni: ""} });
+      this.setState({ chofer: { nombre: "", dni: "", enviaje: ""} });
     }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})
@@ -21,7 +21,7 @@ class ChoferForm extends React.Component {
 
     changeHandler(event) {
         var nuevoChofer = Object.assign({}, this.state.chofer)
-        nuevoChofer[event.target.name] = event.target.value
+        nuevoChofer[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         this.setState({chofer: nuevoChofer})
     }
 
@@ -29,13 +29,13 @@ class ChoferForm extends React.Component {
         fetch('http://localhost:8889/choferes', {
             method: 'put',
             headers: {
-                'Accept': 'application/json',
+                'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            
+            body: JSON.stringify(this.state.chofer)
         }).then(res => this.props.choferChanged(this.state.chofer) )
           .then(res=>this.estadoInicial)
-        event.preventDefault();
+           event.preventDefault();
     }
     addHandler(event) {
       fetch('http://localhost:8889/choferes', {
@@ -47,10 +47,11 @@ class ChoferForm extends React.Component {
             body: JSON.stringify(this.state.chofer)
           })
           .then(res =>this.props.listadoChoferes() )
+          .then(res=>this.props.listadoChoferesenViaje())
           .then(res => this.estadoInicial() );
            event.preventDefault();
   }
-  onClick(event){
+  onSubmit(event){
     if(this.state.chofer._id){
      this.sendHandler(event)
     }else {
@@ -61,7 +62,7 @@ class ChoferForm extends React.Component {
 render() {
 
   return (
-    <Form onSubmit={this.onClick}>  
+    <Form onSubmit={this.onSubmit}>  
       <FormGroup>
       <Label for="exampleName">Nombre</Label>
       <Input type="text" name="nombre" id="exampleNombre" value={this.state.chofer.nombre} 
@@ -72,6 +73,12 @@ render() {
       <Input type="text" name="dni" id="exampleDni" value={this.state.chofer.dni}
       onChange={this.changeHandler} placeholder="30222888" />
     </FormGroup>
+    <FormGroup >
+      <Label for="enviaje"> Viajando  </Label>
+      <input type="checkbox" name="enviaje" checked={this.state.chofer.enviaje}
+      onChange={this.changeHandler}></input>
+    </FormGroup>
+  
     <Button type="submit" outline color="success">Agregar/Actualizar</Button>  
     </Form>
 )

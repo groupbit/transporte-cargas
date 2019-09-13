@@ -8,7 +8,7 @@ class ClienteForm extends React.Component {
       this.state={cliente: props.cliente} 
       this.changeHandler = this.changeHandler.bind(this)
       this.estadoInicial=this.estadoInicial.bind(this)
-      this.onClick=this.onClick.bind(this)
+      this.onSubmit=this.onSubmit.bind(this)
     }
 
     estadoInicial(){
@@ -54,7 +54,7 @@ class ClienteForm extends React.Component {
           event.preventDefault();
   }
 
-     onClick(event){
+     onSubmit(event){
       if(this.state.cliente._id){
        this.sendHandler(event)
       }else {
@@ -65,7 +65,7 @@ class ClienteForm extends React.Component {
     render() {
 
       return (
-        <Form onSubmit={this.onClick}>  
+        <Form onSubmit={this.onSubmit}>  
           <FormGroup>
           <Label for="exampleName">Nombre</Label>
           <Input type="text" name="nombre" id="exampleNombre" value={this.state.cliente.nombre} 

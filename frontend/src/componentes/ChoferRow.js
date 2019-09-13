@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+
 class ChoferRow extends React.Component {
   
     constructor(props) {
@@ -17,6 +18,7 @@ class ChoferRow extends React.Component {
       this.props.updateLista(this.props.chofer);
     }
 
+  
     deleteHandler(_id) {
       fetch("http://localhost:8889/choferes/" +_id, {
           method: 'DELETE',
@@ -27,7 +29,6 @@ class ChoferRow extends React.Component {
       }).then(this.onDelete)
         
     }
-    
 
     render() {
 
@@ -36,9 +37,10 @@ class ChoferRow extends React.Component {
         <td>{this.props.chofer._id}</td> 
           <td>{this.props.chofer.nombre}</td>
           <td>{this.props.chofer.dni}</td>
+          <td>{this.props.chofer.enviaje ? "si" : "no" }</td>
           <Button onClick= {this.seleccionarChofer} outline color="primary"> seleccionar</Button>
           <Button onClick={()=> this.deleteHandler(this.props.chofer._id)} outline color="danger">Borrar</Button>
-     
+          
       </tr>)
   
     }
