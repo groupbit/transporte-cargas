@@ -44,6 +44,8 @@ class Clientes extends React.Component {
             <th>Id</th>
             <th>Nombre</th>
             <th>Razon social</th>
+            <th>Email</th>
+           
           </tr>
         </thead>
             <tbody>
