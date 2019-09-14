@@ -13,7 +13,7 @@ class ClienteForm extends React.Component {
 
     estadoInicial(){
       this.setState({ cliente: {id:"", nombre: "", razonsocial: "",email:"" ,
-      password:"desarrollo"} });
+      } });
     }
 
 
@@ -82,9 +82,22 @@ class ClienteForm extends React.Component {
           <Input type="email" name="email" id="exampleEmail" value={this.state.cliente.email}
           onChange={this.changeHandler} placeholder="natimarzec708@gmail.com" />
         </FormGroup>
+        {/* <FormGroup>
+          <Label for="exampleSelect">Select</Label>
+          <Input type="select" name="select" id="exampleSelect"  value={this.props.listadoChoferesenViaje}
+           onChange={this.changeHandler}>
+            <options></options>
+            
+          </Input>
+        </FormGroup> */}
        
+       {/* necesito hacer un nuevo changehandler para que actualice
+        y  tenga una query y 
+       pasarle en el this.estado del cliente y luego llamarlo */}
+
 
         <FormText color="muted">AL PRESIONAR EL BOTON SIGUIENTE AGREGAS O ACTUALIZAS</FormText>
+       
         <Button type="submit" outline color="success">Agregar/Actualizar</Button>
 
         

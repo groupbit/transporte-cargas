@@ -6,14 +6,14 @@ import { Table } from 'reactstrap';
 class Clientes extends React.Component {
   constructor(props) {
     super(props);
-    this.state= { clientes: [], seleccionado: {}};
+    this.state= { clientes: [], seleccionado: {},choferes:[]};
     this.selectCliente = this.selectCliente.bind(this);
     this.clienteChangeHandler = this.clienteChangeHandler.bind(this);
     this.listadoClientes=this.listadoClientes.bind(this);
     this.updateLista=this.updateLista.bind(this);
-   
+    
   }
-
+ 
   
   componentWillMount() {
     fetch(`http://localhost:8889/clientes`)
@@ -45,6 +45,7 @@ class Clientes extends React.Component {
             <th>Nombre</th>
             <th>Razon social</th>
             <th>Email</th>
+           
            
           </tr>
         </thead>

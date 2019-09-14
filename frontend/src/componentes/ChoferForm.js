@@ -13,7 +13,7 @@ class ChoferForm extends React.Component {
 }
 
     estadoInicial(){
-      this.setState({ chofer: { nombre: "", dni: "", enviaje: ""} });
+      this.setState({ chofer: { nombre: "", dni: "", enviaje:false} });
     }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})

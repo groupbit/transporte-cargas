@@ -4,7 +4,6 @@ class Cliente {
         this.nombre = nombre;
         this.razonsocial = razonsocial;
         this.email=email;
-        
     }
 }
 
