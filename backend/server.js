@@ -77,19 +77,6 @@ function init() {
       })
   });
 
-  // server.get("/choferes/enViaje",(req, res) =>{
-  //   home = homes["choferes"]
-  //   home.enViaje((myObject) => {
-  //         res.json(allObjects)
-  //         res.end()
-  //       })
-  //   });
-  //   => {
-  //       res.json(myObject)
-  //       res.end()
-  //   })
-  // });
-  
 
   server.listen(server.get('port'), () => {
     console.log(`Server on port ${server.get('port')}`);
