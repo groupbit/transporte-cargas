@@ -87,7 +87,7 @@ class Clientes extends React.Component {
     }
   
     renderRows() {
-      return this.state.clientes.map((unCliente, index) => {
+      return this.state.clientes.map((unCliente, index) =>{
         return (
           <ClienteRow cliente={unCliente}
            selector={this.selectCliente}
