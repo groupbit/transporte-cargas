@@ -23,6 +23,7 @@ class MongoDBHome {
     }
 
     get(elementId, callback) {
+        console.log(`id ${elementId}`)
         var objectId = mongoDriver.ObjectID(elementId);
         return this.persistentCollection.findOne({"_id" : objectId}, (error, result)=>{
             if(error) throw error
