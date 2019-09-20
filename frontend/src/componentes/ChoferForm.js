@@ -5,15 +5,15 @@ class ChoferForm extends React.Component {
   
     constructor(props) {
       super(props)
-      this.state={chofer: props.chofer}
+      this.state={chofer: props.chofer, value: 'chof'}
       this.changeHandler = this.changeHandler.bind(this)
       this.estadoInicial=this.estadoInicial.bind(this)
       this.onSubmit=this.onSubmit.bind(this)
-       
-}
+   
+    }
 
     estadoInicial(){
-      this.setState({ chofer: { nombre: "", dni: "", enviaje:false} });
+      this.setState({ chofer: { nombre: "", dni: "", enviaje:"false"} });
     }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})
@@ -24,6 +24,8 @@ class ChoferForm extends React.Component {
         nuevoChofer[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         this.setState({chofer: nuevoChofer})
     }
+  
+
 
     sendHandler(event) {
         fetch('http://localhost:8889/choferes', {

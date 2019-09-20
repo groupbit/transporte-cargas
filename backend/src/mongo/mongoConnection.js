@@ -13,6 +13,7 @@ function connect(callback) {
         db=_db.db(dbname)
         callback(db)        
     })
+    MongoClient.connect(url,{useUnifiedTopology:true})
 }
 
 function close() {

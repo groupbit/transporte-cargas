@@ -45,7 +45,7 @@ class Clientes extends React.Component {
             <th>Nombre</th>
             <th>Razon social</th>
             <th>Email</th>
-           
+            <th>ChoferAsignado</th>
            
           </tr>
         </thead>
@@ -94,6 +94,7 @@ class Clientes extends React.Component {
            selector={this.selectCliente}
            updateLista={this.updateLista} 
            clienteChangeHandler={this.clienteChangeHandler}
+           renderRowsChoferAsignado={this.props.renderRowsChoferAsignado}
            
           />
         );

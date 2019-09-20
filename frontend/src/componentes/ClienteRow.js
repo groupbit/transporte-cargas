@@ -36,6 +36,7 @@ class ClienteRow extends React.Component {
           <td>{this.props.cliente.nombre}</td>
           <td>{this.props.cliente.razonsocial}</td>
           <td>{this.props.cliente.email}</td>
+          <td>{this.props.cliente.choferasignado}</td>
         <Button onClick= {this.seleccionarCliente} outline color="primary"> seleccionar</Button>
         <Button onClick={()=> this.deleteHandler(this.props.cliente._id)} outline color="danger">Borrar</Button>
 

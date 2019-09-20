@@ -11,7 +11,7 @@ class Choferes extends React.Component {
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
     this.listadoChoferes=this.listadoChoferes.bind(this)
     this.updateLista=this.updateLista.bind(this)
-    this.listadoChoferesenViaje=this.listadoChoferesenViaje.bind(this)
+  
   }
 
 
@@ -20,15 +20,7 @@ class Choferes extends React.Component {
       .then( res => res.json())
       .then( chfs => this.setState({choferes: chfs}));
   }
-
-  componentDidMount(){
-    fetch(`http://localhost:8889/choferes/enviaje`)
-      .then( res => res.json())
-      .then( chfs => this.setState({choferes: chfs}));
-  }
   
-  
-
     render() {
 
       
@@ -40,7 +32,6 @@ class Choferes extends React.Component {
            choferChanged={this.choferChangeHandler}
            listadoChoferes={this.listadoChoferes}
            updateLista={this.updateLista}
-           listadoChoferesenViaje={this.listadoChoferesenViaje}
           />
          
           <div className="choferesCSS">
@@ -73,22 +64,17 @@ class Choferes extends React.Component {
       }
 
     }
-    listadoChoferes(){
+  listadoChoferes(){
       this.componentWillMount()
     }
 
-    listadoChoferesenViaje(){
-      this.componentDidMount()
-    }
-  
-    updateLista(unChofer) {
+  updateLista(unChofer) {
      var updateChofer= this.state.choferes.filter(
     item => unChofer._id !== item._id
      );
      this.setState({ choferes: updateChofer });
 
   }
-    
 
   selectChofer(unChofer) {
     this.setState({seleccionado: unChofer})
@@ -111,7 +97,7 @@ class Choferes extends React.Component {
         );
       })
     }
-  
+ 
   }
 
 

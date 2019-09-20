@@ -5,17 +5,21 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 class ClienteForm extends React.Component {
     constructor(props) {
       super(props)
-      this.state={cliente: props.cliente} 
+      this.state={cliente: props.cliente,choferasignado:[]} 
       this.changeHandler = this.changeHandler.bind(this)
+      this.handlerChangeSelector=this.handlerChangeSelector.bind(this)
       this.estadoInicial=this.estadoInicial.bind(this)
       this.onSubmit=this.onSubmit.bind(this)
+    
+
     }
 
     estadoInicial(){
-      this.setState({ cliente: {id:"", nombre: "", razonsocial: "",email:"" ,
+      this.setState({ cliente: {id:"", nombre: "", razonsocial: "",email:"",
+       choferasignado:"",
       } });
+      // this.setState({chofer:{id:"",nombre:""}});
     }
-
 
     componentWillReceiveProps(props) {
       this.setState({cliente: props.cliente})
@@ -25,9 +29,13 @@ class ClienteForm extends React.Component {
         var nuevoCliente = Object.assign({}, this.state.cliente)
         nuevoCliente[event.target.name] = event.target.value
         this.setState({cliente: nuevoCliente})}
-       
-        
 
+    handlerChangeSelector(event){
+      var choferasignado= Object.assign({},this.state.chofer)
+      choferasignado[event.target.name] = event.target.type=== 'select' ? event.target.select : event.target.value;
+      this.setState({choferasignado:choferasignado});
+    }
+ 
     sendHandler(event) {
         fetch('http://localhost:8889/clientes', {
             method: 'PUT',
@@ -37,6 +45,8 @@ class ClienteForm extends React.Component {
             },
             
         }).then(res => this.props.clienteChange(this.state.cliente) )
+        //selector:
+          .then(res=> this.props.handlerChangeSelector(this.state.chofer))  
           .then(res => this.estadoInicial())
 
         event.preventDefault();
@@ -51,6 +61,7 @@ class ClienteForm extends React.Component {
             body: JSON.stringify(this.state.cliente)
           })
           .then(res =>this.props.listadoClientes() )
+          .then(res =>this.props.listadoChoferesEnViaje())
           .then(res => this.estadoInicial() );
           event.preventDefault();
   }
@@ -82,19 +93,17 @@ class ClienteForm extends React.Component {
           <Input type="email" name="email" id="exampleEmail" value={this.state.cliente.email}
           onChange={this.changeHandler} placeholder="natimarzec708@gmail.com" />
         </FormGroup>
-        {/* <FormGroup>
-          <Label for="exampleSelect">Select</Label>
-          <Input type="select" name="select" id="exampleSelect"  value={this.props.listadoChoferesenViaje}
-           onChange={this.changeHandler}>
-            <options></options>
-            
-          </Input>
-        </FormGroup> */}
-       
+
        {/* necesito hacer un nuevo changehandler para que actualice
         y  tenga una query y 
        pasarle en el this.estado del cliente y luego llamarlo */}
 
+       <FormGroup>
+          <Label for="exampleSelect">Asigna un chofer</Label>
+          <Input type="select" name="select" id="exampleSelect" onChange={this.changeHandler}>
+            select={this.state.value}  options={this.props.listadoChoferesEnViaje}
+          </Input>
+        </FormGroup>
 
         <FormText color="muted">AL PRESIONAR EL BOTON SIGUIENTE AGREGAS O ACTUALIZAS</FormText>
        

@@ -62,11 +62,11 @@ function init() {
   });
 
   //lista de choferes que viajan
-  server.get("/:type",(req, res) =>{
+  server.get("/:type/:enviaje",(req, res) =>{
     var query = {}
     if(req.query.enviaje){
       console.log(`choferes: ${req.query.enviaje}`)
-      var enViaje=(req.query.enviaje== "true")
+      var enViaje=(req.query.enviaje== `true`)
       query ={"enViaje":enviaje}
     }
     home = homes["choferes"]
