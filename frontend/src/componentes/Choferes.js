@@ -11,7 +11,7 @@ class Choferes extends React.Component {
     this.choferChangeHandler = this.choferChangeHandler.bind(this)
     this.listadoChoferes=this.listadoChoferes.bind(this)
     this.updateLista=this.updateLista.bind(this)
-    this.listadoChoferesenViaje=this.listadoChoferesenViaje.bind(this)
+    
   }
 
 
@@ -21,18 +21,9 @@ class Choferes extends React.Component {
       .then( chfs => this.setState({choferes: chfs}));
   }
 
-  componentDidMount(){
-    fetch(`http://localhost:8889/choferes/enviaje`)
-      .then( res => res.json())
-      .then( chfs => this.setState({choferes: chfs}));
-  }
-  
-  
-
     render() {
-
-      
-      if( this.state.choferes.length > 0 ) {
+    //   if( this.state.choferes.length > 0 ) {
+        
         return(
 
           <div className="container">
@@ -40,7 +31,6 @@ class Choferes extends React.Component {
            choferChanged={this.choferChangeHandler}
            listadoChoferes={this.listadoChoferes}
            updateLista={this.updateLista}
-           listadoChoferesenViaje={this.listadoChoferesenViaje}
           />
          
           <div className="choferesCSS">
@@ -62,28 +52,25 @@ class Choferes extends React.Component {
      
           </div>
         </div>)
-      }
+      // }
 
-      else {
-        return(
-          <div className="choferesCSS">
-              <h2>{this.props.titulo}</h2>
-              CARGANDO
-          </div>);  
-      }
+      // else {
+      //   return(
+      //     <div className="choferesCSS">
+      //         <h2>{this.props.titulo}</h2>
+      //         CARGANDO
+      //     </div>);  
+      // }
 
     }
     listadoChoferes(){
       this.componentWillMount()
     }
 
-    listadoChoferesenViaje(){
-      this.componentDidMount()
-    }
-  
     updateLista(unChofer) {
      var updateChofer= this.state.choferes.filter(
-    item => unChofer._id !== item._id
+    item => unChofer._id !== item._id 
+    // && unChofer.conCarga === false
      );
      this.setState({ choferes: updateChofer });
 
