@@ -22,7 +22,7 @@ class Choferes extends React.Component {
   }
 
     render() {
-    //   if( this.state.choferes.length > 0 ) {
+ 
         
         return(
 
@@ -52,15 +52,7 @@ class Choferes extends React.Component {
      
           </div>
         </div>)
-      // }
 
-      // else {
-      //   return(
-      //     <div className="choferesCSS">
-      //         <h2>{this.props.titulo}</h2>
-      //         CARGANDO
-      //     </div>);  
-      // }
 
     }
     listadoChoferes(){
@@ -70,7 +62,7 @@ class Choferes extends React.Component {
     updateLista(unChofer) {
      var updateChofer= this.state.choferes.filter(
     item => unChofer._id !== item._id 
-    // && unChofer.conCarga === false
+
      );
      this.setState({ choferes: updateChofer });
 

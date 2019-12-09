@@ -43,37 +43,6 @@ function init() {
       res.end() })  
   })
 
-server.get("/:type", (req, res) => {
-  var query = {}
-  if (req.query.conCarga) {
-    console.log(`Query choferesConCarga: ${req.query.conCarga}`)
-    var deCarga = (req.query.conCarga == "true")
-    query = {"conCarga" : deCarga }
-  }
-  home = homes["choferes"]
-  home.find(query,
-    (allObjects) => {
-      res.json(allObjects) 
-      res.end()
-    })         
-})
-
-server.get("/:type", (req, res) => {
-  var query = {}
-  if (req.query.conCarga) {
-    console.log(`Query choferes: ${req.query.conCarga}`)
-    var deCarga = (req.query.conCarga == "false")
-    query = {"conCarga" : deCarga }
-  }
-  home = homes["choferes"]
-  home.find(query,
-    (allObjects) => {
-      res.json(allObjects) 
-      res.end()
-    })         
-})
-
-
   server.put("/:type", (req, res) => {
     home = homes[req.params.type]
     home.update(req.body)
