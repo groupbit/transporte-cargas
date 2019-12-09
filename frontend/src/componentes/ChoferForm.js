@@ -5,7 +5,7 @@ class ChoferForm extends React.Component {
   
     constructor(props) {
       super(props)
-      this.state={chofer: props.chofer}
+      this.state={chofer:props.chofer}
       this.changeHandler = this.changeHandler.bind(this)
       this.estadoInicial=this.estadoInicial.bind(this)
       this.onSubmit=this.onSubmit.bind(this)
@@ -13,7 +13,8 @@ class ChoferForm extends React.Component {
 }
 
     estadoInicial(){
-      this.setState({ chofer: { nombre: "", dni: "", enviaje: ""} });
+      this.setState({ chofer: { nombre: "", dni: "", enViaje:"no"} });
+      // this.setState({ chofer: { nombre: "", dni: ""} });
     }
     componentWillReceiveProps(props) {
       this.setState({chofer: props.chofer})
@@ -37,6 +38,8 @@ class ChoferForm extends React.Component {
           .then(res=>this.estadoInicial)
            event.preventDefault();
     }
+
+
     addHandler(event) {
       fetch('http://localhost:8889/choferes', {
           method: 'post',
@@ -47,7 +50,6 @@ class ChoferForm extends React.Component {
             body: JSON.stringify(this.state.chofer)
           })
           .then(res =>this.props.listadoChoferes() )
-          .then(res=>this.props.listadoChoferesenViaje())
           .then(res => this.estadoInicial() );
            event.preventDefault();
   }
@@ -57,6 +59,7 @@ class ChoferForm extends React.Component {
     }else {
       this.addHandler(event)
   }
+    event.preventDefault()
 }
 
 render() {
@@ -74,8 +77,8 @@ render() {
       onChange={this.changeHandler} placeholder="30222888" />
     </FormGroup>
     <FormGroup >
-      <Label for="enviaje"> Viajando  </Label>
-      <input type="checkbox" name="enviaje" checked={this.state.chofer.enviaje}
+      <Label for="enViaje"> Viajando  </Label>
+      <input type="checkbox" name="enViaje" checked={this.state.chofer.enViaje}
       onChange={this.changeHandler}></input>
     </FormGroup>
   

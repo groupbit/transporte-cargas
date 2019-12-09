@@ -61,35 +61,6 @@ function init() {
     res.status(204).end();  
   });
 
-  //lista de choferes que viajan
-  server.get("/:type",(req, res) =>{
-    var query = {}
-    if(req.query.enviaje){
-      console.log(`choferes: ${req.query.enviaje}`)
-      var enViaje=(req.query.enviaje== "true")
-      query ={"enViaje":enviaje}
-    }
-    home = homes["choferes"]
-    home.find(query,
-      (allObjects) => {
-        res.json(allObjects)
-        res.end()
-      })
-  });
-
-  // server.get("/choferes/enViaje",(req, res) =>{
-  //   home = homes["choferes"]
-  //   home.enViaje((myObject) => {
-  //         res.json(allObjects)
-  //         res.end()
-  //       })
-  //   });
-  //   => {
-  //       res.json(myObject)
-  //       res.end()
-  //   })
-  // });
-  
 
   server.listen(server.get('port'), () => {
     console.log(`Server on port ${server.get('port')}`);

@@ -1,9 +1,10 @@
 class Chofer{
     
-    constructor (nombre,dni,enViaje){
+    constructor (nombre,dni,no){
         this.nombre=nombre;
         this.dni=dni;
-        this.enViaje=enViaje;
+        this.enViaje=no;
+        // this.conCarga=false;
     }
 }
 module.exports = Chofer;

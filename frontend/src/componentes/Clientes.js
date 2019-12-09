@@ -23,7 +23,6 @@ class Clientes extends React.Component {
 
     render() {
 
-      if( this.state.clientes.length > 0 ) {
         return(
           <div className="container">
              <ClienteForm cliente={this.state.seleccionado}
@@ -55,14 +54,6 @@ class Clientes extends React.Component {
          
           </div>      
         </div>)
-      }
-      else {
-        return(
-          <div className="clientesCSS">
-              <h2>{this.props.titulo}</h2>
-              CARGANDO
-          </div>);  
-      }
     }
     listadoClientes(){
       this.componentWillMount()
@@ -87,7 +78,7 @@ class Clientes extends React.Component {
     }
   
     renderRows() {
-      return this.state.clientes.map((unCliente, index) => {
+      return this.state.clientes.map((unCliente, index) =>{
         return (
           <ClienteRow cliente={unCliente}
            selector={this.selectCliente}

@@ -37,7 +37,7 @@ class ChoferRow extends React.Component {
         <td>{this.props.chofer._id}</td> 
           <td>{this.props.chofer.nombre}</td>
           <td>{this.props.chofer.dni}</td>
-          <td>{this.props.chofer.enviaje ? "si" : "no" }</td>
+          <td>{this.props.chofer.enViaje ? "si" : "no" }</td>
           <Button onClick= {this.seleccionarChofer} outline color="primary"> seleccionar</Button>
           <Button onClick={()=> this.deleteHandler(this.props.chofer._id)} outline color="danger">Borrar</Button>
           
